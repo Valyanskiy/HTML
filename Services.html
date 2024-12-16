@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Услуги | Валянский Андрей ЭФБО-04-23</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="body">
+<div style="display: flex;">
+    <aside id="navigation" class="pageNav"></aside>
+    <article>
+        <h1>Разработка веб-приложений</h1>
+        <div class="gallery">
+            <div class="goods">
+                <a href="">
+                    <img class="logo" src="Place_holder.png" alt="Place_holder" style="max-width: 100%; text-decoration: none;">
+                    <h3 style="margin: 15px; align-content: center;">Сайт визитка</h3>
+                </a>
+                <button class="open-btn">
+                    Заказать
+                </button>
+            </div>
+            <div class="goods">
+                <a href="">
+                    <img class="logo" src="Place_holder.png" alt="Place_holder" style="max-width: 100%;text-decoration: none;">
+                    <h3 style="margin: 15px; align-content: center;">Корпоративный сайт</h3>
+                </a>
+                <button class="open-btn">
+                    Заказать
+                </button>
+            </div>
+            <div class="goods">
+                <a href="">
+                    <img class="logo" src="Place_holder.png" alt="Place_holder" style="max-width: 100%; text-decoration: none;">
+                    <h3 style="margin: 15px; align-content: center;">Интернет-магазин</h3>
+                </a>
+                <button class="open-btn">
+                    Заказать
+                </button>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+<dialog id="Order" style="width: 390px;">
+    <h2>Разработка веб-приложения</h2>
+    <p>Заполните форму и мы обязательно свяжемся с вами в ближайщее время для уточнения деталей</p>
+    <form method="get" id="form" style="display: grid">
+        <div class = "form">
+            <label id="name">Как вас зовут</label><input required type="text" name="name" placeholder="например Иванов Иван Иванович" style="max-width: 100%;">
+        </div>
+        <div class = "form">
+            <label id="email">Ваш e-mail</label><input required type="email" name="email" placeholder="test@mail.ru" style="max-width: 100%;">
+        </div>
+        <div class = "form">
+            <label id="phone_label">Телефон</label><input required type="tel" name="tel" id="phone" placeholder="+7 919 999 99 99" style="max-width: 100%;">
+        </div>
+        <div class = "form">
+            <label id="country">Страна</label><select required name="country" style="max-width: 50%; border-width: 1px;">
+            <option selected disabled value="">-</option>
+            <option value="Россия">Россия</option>
+            <option value="Беларусь">Беларусь</option>
+        </select>
+        </div>
+        <div class = "form">
+            <label id="date">Дата</label><input required type="date" name="date" style="max-width: 100%; border-width: 2px">
+        </div>
+        <div class = "form">
+            <label id="comment">Комментарий</label><textarea name="comment" style="height: 7em;max-width: 100%"></textarea>
+        </div>
+        <div>
+            <label id="consent" style="justify-content:left; gap: 12px;" class = "form"><input required type="checkbox" name="consent">Согласен на обработку моих персональных данных</label>
+        </div>
+        <div id="service_type"></div>
+        <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 12px;">
+            <button>
+                Отправить заявку
+            </button>
+        </div>
+    </form>
+</dialog>
+<script src="index.js"></script>
+<script>
+    const modalElement = document.getElementById("Order");
+    const openBtn = document.querySelectorAll(".open-btn");
+    const hidden = document.getElementById("service_type");
+    const types = [1, 2, 3];
+    for (let i = 0; i < openBtn.length; ++i) {
+        openBtn[i].addEventListener("click", () => {
+            modalElement.showModal();
+            hidden.innerHTML = "<input name='type' type = 'hidden' value = " + types[i] + ">";
+        });
+    };
+</script>
+<script src="https://unpkg.com/imask"></script>
+<script>
+    element = document.getElementById('phone');
+    maskOptions = {
+        mask: '+{7} 000 000 00 00',
+        lazy: true
+    }
+    mask = new IMask(element, maskOptions);
+    document.getElementById('form').addEventListener('submit', function (event) {
+        // Убираем символы маски, оставляем только цифры
+        unmaskedValue = mask.unmaskedValue;
+
+        // Проверка минимальной длины для номера телефона
+        if (unmaskedValue.length < 10) {
+            event.preventDefault();  // Останавливаем отправку формы
+            alert('Пожалуйста, введите корректный номер телефона (минимум 10 цифр).');
+        } else {
+            alert('Форма успешно отправлена!');
+        }
+    })
+</script>
+</html>

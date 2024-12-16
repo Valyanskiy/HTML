@@ -1,0 +1,35 @@
+:root {
+    --navigator-color: rgba(64, 64, 64, 0.3);
+    --background-color: #212121;
+    --white-color: #e3e3e3;
+}
+
+.body {
+    background-color: var(--background-color);
+    padding-top: 8px;
+}
+
+article {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+img {
+    filter: invert(95%)
+}
+.table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+th.st::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+    word-wrap: normal;
+}
+.st {
+    background-color: rgb(23,25,28) !important;
+}
+dialog::backdrop {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
